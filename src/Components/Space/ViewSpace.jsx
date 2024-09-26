@@ -16,11 +16,9 @@ const ViewSpace = ({ onRefresh, isGridView }) => {
   const fetchSpaces = useCallback(async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/v1/spaces/`,
+        `${import.meta.env.VITE_API_URL}/api/v1/spaces`,
         {
-          headers: {
-            Authorization: `${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         },
       );
       setSpaces(response.data.spaces);

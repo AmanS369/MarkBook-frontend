@@ -19,7 +19,7 @@ const SpaceDetailsPage = () => {
         `${import.meta.env.VITE_API_URL}/api/v1/spaces/${spaceId}`,
         {
           headers: {
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         },
       );

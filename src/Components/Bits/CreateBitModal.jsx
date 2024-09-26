@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CreateBitModal = ({ isOpen, onClose, onCreateBit, spaceId, token }) => {
+const CreateBitModal = ({
+  isOpen,
+  onClose,
+  onCreateBit, // New prop to trigger refresh
+  spaceId,
+  token,
+}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -10,16 +16,16 @@ const CreateBitModal = ({ isOpen, onClose, onCreateBit, spaceId, token }) => {
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/v1/bits/create-bit`,
-        { title, description, remainder: null, spaceId },
+        { title, link: null, description, remainder: null, spaceId },
         {
           headers: {
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         },
       );
       setTitle("");
       setDescription("");
-      onCreateBit();
+      onCreateBit(); // Call the callback function after creating a bit
     } catch (err) {
       console.error("Failed to create bit", err);
     }

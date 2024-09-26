@@ -13,7 +13,7 @@ const CreateSpaceModal = ({ isOpen, onClose, addSpaceToList, token }) => {
         { title, description },
         {
           headers: {
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         },
       );

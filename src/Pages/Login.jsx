@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { isAuthenticated, login } from "../Redux/Slice/authSlice";
 import { auth } from "../Firebase/config";
 import { signInWithCustomToken } from "firebase/auth";
-import { Mail, Lock } from "lucide-react";
-import { Alert, AlertDescription } from "@chakra-ui/react";
+import { Mail, Lock, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +41,6 @@ const Login = () => {
           data.firebaseToken,
         );
         const user = userCredential.user;
-        console.log("user i ", user);
         dispatch(
           login({
             user: data.user,
@@ -62,22 +61,42 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
+        <motion.img
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
           src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
           alt="Workflow"
           className="mx-auto h-12 w-auto"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <motion.h2
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-6 text-center text-3xl font-extrabold text-gray-900"
+        >
           Sign in to your account
-        </h2>
+        </motion.h2>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
+      >
         <div className="bg-white py-8 px-4 shadow-2xl sm:rounded-lg sm:px-10">
           {error && (
-            <Alert variant="destructive" className="mb-6">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mb-4 flex items-center p-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50"
+              role="alert"
+            >
+              <AlertCircle className="flex-shrink-0 inline w-4 h-4 mr-3" />
+              <span className="sr-only">Error</span>
+              <div>{error}</div>
+            </motion.div>
           )}
           <form className="space-y-6" onSubmit={handleLogin}>
             <div>
@@ -157,12 +176,14 @@ const Login = () => {
             </div>
 
             <div>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
               >
                 Sign in
-              </button>
+              </motion.button>
             </div>
           </form>
 
@@ -178,10 +199,12 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-3"></div>
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              {/* Add social login buttons here if needed */}
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
