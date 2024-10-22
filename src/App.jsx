@@ -13,7 +13,7 @@ import Dashboard from "./Pages/Dashboard";
 import Layout from "./Components/Layout";
 import SpacePage from "./Pages/SpacePage";
 import SpaceDetailsPage from "./Pages/SpaceDetails";
-import BitEditor from "./Components/Bits/BitEditor";
+import BitEditor from "./Components/Bits/BitEditorComponent/BitEditor";
 import Setting from "./Components/Setting";
 
 function App() {

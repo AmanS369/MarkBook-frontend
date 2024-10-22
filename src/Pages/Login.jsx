@@ -6,6 +6,7 @@ import { auth } from "../Firebase/config";
 import { signInWithCustomToken } from "firebase/auth";
 import { Mail, Lock, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import Logo from "../assets/react copy.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -65,7 +66,7 @@ const Login = () => {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+          src={Logo}
           alt="Workflow"
           className="mx-auto h-12 w-auto"
         />

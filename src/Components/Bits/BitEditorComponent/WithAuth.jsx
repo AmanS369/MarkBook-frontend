@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { auth } from "../../Firebase/config";
+import { auth } from "../../../Firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 
 const WithAuth = (WrappedComponent) => {
